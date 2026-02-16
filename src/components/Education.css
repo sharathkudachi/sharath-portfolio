@@ -1,0 +1,149 @@
+.education {
+  background: var(--bg-primary);
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--neon-blue) 20%,
+    var(--neon-blue) 80%,
+    transparent
+  );
+  box-shadow: 0 0 10px var(--glow-blue);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 3px solid var(--neon-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neon-blue);
+  box-shadow: 0 0 20px var(--glow-blue);
+  z-index: 2;
+}
+
+.timeline-content {
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  width: calc(50% - 50px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-right: auto;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: auto;
+}
+
+.timeline-content:hover {
+  border-color: var(--neon-blue);
+  background: rgba(0, 212, 255, 0.08);
+}
+
+.timeline-degree {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--neon-blue);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-institution {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.timeline-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.timeline-duration,
+.timeline-score {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.timeline-score {
+  color: var(--neon-cyan);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 30px;
+  }
+
+  .timeline-item {
+    margin-bottom: 3rem;
+  }
+
+  .timeline-icon {
+    left: 30px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .timeline-content {
+    width: calc(100% - 80px);
+    margin-left: auto !important;
+  }
+
+  .timeline-degree {
+    font-size: 1.25rem;
+  }
+
+  .timeline-institution {
+    font-size: 1rem;
+  }
+
+  .timeline-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
