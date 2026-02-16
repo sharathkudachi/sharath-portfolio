@@ -2,6 +2,8 @@
 
 A modern, animated developer portfolio built with React, Vite, and Framer Motion. Features a cyber-futuristic design with neon blue accents, glassmorphism effects, and smooth animations.
 
+[Visit My Portfolio](https://sharathkudachi.github.io/sharath-portfolio/)
+
 ## ✨ Features
 
 - **Modern Design**: Black background with neon blue accents and subtle grid animations
