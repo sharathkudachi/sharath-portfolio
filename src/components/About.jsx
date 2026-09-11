@@ -1,91 +1,120 @@
 import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Cpu, Shield, Rocket, Code2 } from 'lucide-react'
+import { Cpu, Shield, Compass, Code, Award, Users, BookOpen } from 'lucide-react'
 import './About.css'
 
-const interests = [
-  { icon: Cpu, title: 'Artificial Intelligence', color: '#00d4ff' },
-  { icon: Shield, title: 'Defence Technology', color: '#00ffff' },
-  { icon: Rocket, title: 'Autonomous Systems', color: '#00d4ff' },
-  { icon: Code2, title: 'Software Engineering', color: '#00ffff' },
+const technicalFocuses = [
+  {
+    icon: Cpu,
+    title: 'AI & Data Intelligence',
+    description: 'Developing RAG engines, vector search pipelines, and multi-provider LLM integrations for domain-specific telemetry analysis.'
+  },
+  {
+    icon: Shield,
+    title: 'Maritime & Defence Tech',
+    description: 'Building real-time vessel monitoring (ORVMS), EEZ intrusion detection, CPA/TCPA collision risk metrics, and tactical intelligence systems.'
+  },
+  {
+    icon: Compass,
+    title: 'Autonomous UAV Systems',
+    description: 'Investigating fault detection, trajectory optimization in GPS-denied environments, and hardware-decoupled emergency parachute recovery.'
+  },
+  {
+    icon: Code,
+    title: 'Full Stack Engineering',
+    description: 'Architecting modular web applications using Python (FastAPI), React, Express, Node.js, and spatial web rendering (Leaflet, Three.js).'
+  }
 ]
 
 const About = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-
   return (
-    <section className="section about" ref={ref}>
+    <section className="section about" id="about">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-header">
+          <p className="section-label">BACKGROUND &amp; PHILOSOPHY</p>
           <h2 className="section-title">About Me</h2>
+          <p className="section-description">
+            Computer Science Engineer focused on building software that solves complex real-world challenges in ocean data, defence intelligence, and emergency autonomy.
+          </p>
+        </div>
 
-<motion.p
-  className="about-text"
-  initial={{ opacity: 0 }}
-  animate={isInView ? { opacity: 1 } : {}}
-  transition={{ delay: 0.2, duration: 0.6 }}
->
-  I'm a Computer Science student at <span className="highlight">BMS Institute of Technology and Management (BMSIT)</span>, 
-  driven by a strong passion for building intelligent and impactful software systems. My core interests lie in 
-  <span className="highlight"> Artificial Intelligence</span>, <span className="highlight">Defence Technology</span>, 
-  and <span className="highlight">Autonomous Systems</span>, where I aim to design solutions that solve meaningful real-world problems.
-</motion.p>
+        <div className="about-grid">
+          {/* Main Narrative Column */}
+          <div className="about-narrative">
+            <p className="about-paragraph">
+              I am a Computer Science and Engineering student at <span className="highlight-text">BMS Institute of Technology and Management (BMSIT)</span>, Bengaluru. My engineering philosophy revolves around building robust, mathematically grounded, and production-ready applications rather than superficial prototypes.
+            </p>
 
-<motion.p
-  className="about-text"
-  initial={{ opacity: 0 }}
-  animate={isInView ? { opacity: 1 } : {}}
-  transition={{ delay: 0.4, duration: 0.6 }}
->
-  I enjoy transforming ideas into scalable applications — from maritime surveillance platforms 
-  and anomaly detection systems to AI-powered healthcare solutions. My approach combines 
-  structured problem-solving, clean and maintainable code practices, and continuous learning 
-  to stay aligned with evolving technologies.
-</motion.p>
+            <p className="about-paragraph">
+              My technical journey spans across <span className="highlight-text">Artificial Intelligence</span>, <span className="highlight-text">Full Stack Architecture</span>, <span className="highlight-text">Geospatial Analytics</span>, and <span className="highlight-text">Autonomous Hardware-Software Systems</span>. Whether engineering an oceanographic RAG platform (Argo FloatChat) analyzing global float casts, or developing real-time AIS vessel telemetry risk calculators, I focus on system reliability, clean abstraction, and high signal-to-noise user experiences.
+            </p>
 
-<motion.p
-  className="about-text"
-  initial={{ opacity: 0 }}
-  animate={isInView ? { opacity: 1 } : {}}
-  transition={{ delay: 0.6, duration: 0.6 }}
->
-  Beyond academics, I serve as the <span className="highlight">Founder & Vice President of Astra Club</span> 
-  at BMSIT, where I lead innovation-driven initiatives and collaborative technical projects. 
-  I strongly believe in combining leadership, teamwork, and technical excellence to create 
-  solutions that make a lasting impact.
-</motion.p>
-
-
-          <div className="interests-grid">
-            {interests.map((item, index) => {
-              const Icon = item.icon
-              return (
-                <motion.div
-                  key={item.title}
-                  className="interest-card"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    boxShadow: `0 0 30px ${item.color}40`
-                  }}
-                >
-                  <div className="interest-icon" style={{ color: item.color }}>
-                    <Icon size={32} />
-                  </div>
-                  <h3 className="interest-title">{item.title}</h3>
-                </motion.div>
-              )
-            })}
+            <div className="leadership-box">
+              <div className="leadership-header">
+                <Users size={20} className="leadership-icon" />
+                <div>
+                  <h4 className="leadership-title">Founder &amp; Vice President — Astra Club</h4>
+                  <span className="leadership-org">BMS Institute of Technology &amp; Management</span>
+                </div>
+              </div>
+              <p className="leadership-text">
+                Founded and actively lead Astra Club at BMSIT, fostering a collaborative technical ecosystem where students design, build, and deploy real-world software, hackathon entries, and research prototypes.
+              </p>
+            </div>
           </div>
-        </motion.div>
+
+          {/* Quick Technical Highlights Sidebar */}
+          <div className="about-stats-column">
+            <div className="stat-card">
+              <div className="stat-icon"><BookOpen size={22} /></div>
+              <div className="stat-info">
+                <span className="stat-title">Institution</span>
+                <span className="stat-value">BMSIT &amp; M, Bengaluru</span>
+                <span className="stat-sub">B.E. Computer Science (2023–2027)</span>
+              </div>
+            </div>
+
+            <div className="stat-card">
+              <div className="stat-icon"><Award size={22} /></div>
+              <div className="stat-info">
+                <span className="stat-title">Core Focus</span>
+                <span className="stat-value">Autonomous Systems &amp; AI</span>
+                <span className="stat-sub">VIO, Sensor Fusion &amp; RAG Systems</span>
+              </div>
+            </div>
+
+            <div className="stat-card">
+              <div className="stat-icon"><Shield size={22} /></div>
+              <div className="stat-info">
+                <span className="stat-title">Domain Expertise</span>
+                <span className="stat-value">Defence &amp; Maritime</span>
+                <span className="stat-sub">AIS Telemetry &amp; Geo-Surveillance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Technical Focus Cards */}
+        <div className="focus-cards-grid">
+          {technicalFocuses.map((item, index) => {
+            const Icon = item.icon
+            return (
+              <motion.div
+                key={item.title}
+                className="focus-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="focus-icon">
+                  <Icon size={24} />
+                </div>
+                <h3 className="focus-title">{item.title}</h3>
+                <p className="focus-description">{item.description}</p>
+              </motion.div>
+            )
+          })}
+        </div>
       </div>
     </section>
   )

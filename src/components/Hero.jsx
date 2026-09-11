@@ -1,140 +1,130 @@
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import { Download, Eye } from 'lucide-react'
+import { ArrowRight, Download, Github, Linkedin, Shield, Cpu, Compass, Code } from 'lucide-react'
 import './Hero.css'
 
+const baseUrl = import.meta.env.BASE_URL
+
 const Hero = () => {
-  const [text, setText] = useState('')
-  const fullText = 'Computer Science Student | AI & Defence Tech Enthusiast'
-  const [isTyping, setIsTyping] = useState(true)
-
-  useEffect(() => {
-    if (isTyping) {
-      if (text.length < fullText.length) {
-        const timeout = setTimeout(() => {
-          setText(fullText.slice(0, text.length + 1))
-        }, 50)
-        return () => clearTimeout(timeout)
-      } else {
-        setIsTyping(false)
-      }
-    }
-  }, [text, isTyping])
-
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const downloadResume = () => {
-    // Create a link to the resume file in the public folder
-    const link = document.createElement('a')
-    link.href = '/sharath-portfolio/Sharath-Resume.pdf'
-    link.download = 'Sharath-Resume.pdf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
-
   return (
-    <section className="hero">
-      {/* Animated Grid Background */}
-      <div className="grid-background">
-        <div className="grid-lines"></div>
-      </div>
+    <section className="hero" id="hero">
+      <div className="container hero-container">
+        {/* Left: Hero Introduction & Actions */}
+        <div className="hero-content">
+          <motion.div
+            className="hero-badge"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="badge-dot"></span>
+            COMPUTER SCIENCE ENGINEER
+          </motion.div>
 
-      <div className="container hero-content">
-        <motion.div
-          className="hero-text"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
           <motion.h1
-            className="hero-name"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            className="hero-title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
             Sharath Y Kudachi
           </motion.h1>
 
-          <motion.div
-            className="hero-tagline-wrapper"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+          <motion.p
+            className="hero-subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="hero-tagline">
-              {text}
-              <span className="cursor">|</span>
-            </p>
-          </motion.div>
+            Building intelligent software, data-driven systems, and autonomous technologies for real-world problems.
+          </motion.p>
 
           <motion.p
-            className="hero-description"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
+            className="hero-bio"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            I am a passionate Computer Science student at BMSIT driven by curiosity, 
-            innovation, and problem-solving. I enjoy building real-world systems like 
-            maritime surveillance platforms and AI-powered applications. Constantly 
-            learning, experimenting, and pushing my limits to grow as a software engineer.
+            Computer Science student at BMSIT specializing in AI/ML software engineering, RAG-backed ocean data platforms, real-time spatial surveillance, and fault-tolerant embedded UAV recovery systems.
           </motion.p>
 
           <motion.div
-            className="hero-buttons"
+            className="hero-pillars"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <motion.button
-              className="btn btn-primary"
-              onClick={scrollToProjects}
-              whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(0, 212, 255, 0.5)' }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Eye size={20} />
-              View Projects
-            </motion.button>
-
-            <motion.button
-              className="btn btn-secondary"
-              onClick={downloadResume}
-              whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(0, 212, 255, 0.3)' }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Download size={20} />
-              Download Resume
-            </motion.button>
+            <span className="pillar-tag"><Cpu size={14} /> AI / ML</span>
+            <span className="pillar-tag"><Code size={14} /> Full Stack</span>
+            <span className="pillar-tag"><Compass size={14} /> Autonomous Systems</span>
+            <span className="pillar-tag"><Shield size={14} /> Defence Technology</span>
           </motion.div>
-        </motion.div>
 
-        {/* Floating Elements */}
+          <motion.div
+            className="hero-actions"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <button className="btn btn-primary" onClick={scrollToProjects}>
+              <span>Explore Projects</span>
+              <ArrowRight size={18} />
+            </button>
+
+            <a
+              href={`${baseUrl}Sharath-Resume.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Sharath-Resume.pdf"
+              className="btn btn-secondary"
+            >
+              <Download size={18} />
+              <span>View Resume</span>
+            </a>
+
+            <div className="hero-social-buttons">
+              <a
+                href="https://github.com/sharathkudachi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-icon-btn"
+                aria-label="GitHub Profile"
+              >
+                <Github size={20} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/sharath-y-kudachi-37438b314/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-icon-btn"
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin size={20} />
+              </a>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right: Small, Polished Circular Portrait */}
         <motion.div
-          className="floating-element element-1"
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 5, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="floating-element element-2"
-          animate={{
-            y: [0, -15, 0],
-            rotate: [0, -5, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+          className="hero-avatar-wrapper"
+          initial={{ opacity: 0, scale: 0.94, y: 15 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.65, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="hero-avatar-halo" />
+          <div className="hero-avatar-ring">
+            <img
+              src={`${baseUrl}picture.png`}
+              alt="Sharath Y Kudachi — Computer Science Engineer"
+              className="hero-avatar-img"
+              loading="eager"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   )

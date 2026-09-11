@@ -1,88 +1,81 @@
 import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { Code2, Layout, Brain, Database, Wrench, Compass } from 'lucide-react'
 import './Skills.css'
 
-const skillCategories = [
+const skillGroups = [
   {
-    title: 'Core Languages',
-    skills: ['Python', 'Java', 'C', 'C++', 'JavaScript']
+    category: 'Programming Languages',
+    icon: Code2,
+    skills: ['Python', 'Java', 'C', 'C++', 'JavaScript', 'SQL']
   },
   {
-    title: 'Frontend',
-    skills: ['HTML', 'CSS', 'React']
+    category: 'Web Technologies',
+    icon: Layout,
+    skills: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'REST APIs', 'Leaflet.js', 'Three.js']
   },
   {
-    title: 'Database',
-    skills: ['SQLite']
+    category: 'Databases',
+    icon: Database,
+    skills: ['PostgreSQL', 'MongoDB', 'SQLite', 'Vector Databases', 'PostGIS']
   },
   {
-    title: 'Tools & Technologies',
-    skills: ['Git', 'GitHub', 'VS Code', 'Linux', 'Streamlit', 'OpenAI API', 'Swing', 'Folium']
+    category: 'AI & Data Engineering',
+    icon: Brain,
+    skills: ['Machine Learning', 'Predictive Modeling', 'Anomaly Detection', 'NLP', 'RAG', 'Data Processing', 'Data Visualization', 'Feature Engineering']
   },
   {
-    title: 'Areas of Interest',
-    skills: [
-      'Artificial Intelligence',
-      'Machine Learning',
-      'Defence Technology',
-      'Autonomous Systems',
-      'Software Engineering',
-      'Algorithms & Data Structures',
-      'Maritime & Surveillance Systems'
-    ]
+    category: 'Autonomous Systems & Robotics',
+    icon: Compass,
+    skills: ['Autonomous Navigation', 'Path Planning (A*, RRT, RRT*, PSO, APF)', 'Sensor Fusion', 'Visual-Inertial Odometry (VIO)', 'Flight Control']
+  },
+  {
+    category: 'Tools & Technologies',
+    icon: Wrench,
+    skills: ['Git', 'GitHub', 'Docker', 'Linux', 'Streamlit', 'Folium', 'ROS', 'PX4', 'Gazebo', 'MATLAB', 'OpenCV', 'SolidWorks', 'Pandas', 'NumPy', 'Xarray', 'NetCDF4']
   }
 ]
 
 const Skills = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-
   return (
-    <section className="section skills" ref={ref}>
+    <section className="section skills" id="skills">
       <div className="container">
-        <motion.h2
-          className="section-title"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          Skills & Expertise
-        </motion.h2>
+        <div className="section-header">
+          <p className="section-label">TECHNICAL COMPETENCIES</p>
+          <h2 className="section-title">Skills &amp; Expertise</h2>
+          <p className="section-description">
+            Technical skills directly derived from academic coursework, engineering projects, research, and production implementations.
+          </p>
+        </div>
 
-        <div className="skills-container">
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.title}
-              className="skill-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
-            >
-              <h3 className="category-title">{category.title}</h3>
-              <div className="skills-grid">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill}
-                    className="skill-card"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ 
-                      delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                      duration: 0.4 
-                    }}
-                    whileHover={{ 
-                      scale: 1.08,
-                      boxShadow: '0 0 30px rgba(0, 212, 255, 0.5)',
-                      borderColor: 'var(--neon-blue)'
-                    }}
-                  >
-                    <span className="skill-name">{skill}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+        <div className="skills-grid">
+          {skillGroups.map((group, index) => {
+            const Icon = group.icon
+            return (
+              <motion.div
+                key={group.category}
+                className="skill-category-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+              >
+                <div className="category-header">
+                  <div className="category-icon">
+                    <Icon size={20} />
+                  </div>
+                  <h3 className="category-title">{group.category}</h3>
+                </div>
+
+                <div className="skills-pill-list">
+                  {group.skills.map((skill) => (
+                    <span key={skill} className="skill-pill">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

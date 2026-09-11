@@ -1,77 +1,83 @@
 import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { GraduationCap, Award } from 'lucide-react'
+import { GraduationCap, Award, Calendar } from 'lucide-react'
 import './Education.css'
 
-const educationData = [
+const educationHistory = [
   {
-    degree: 'Bachelor of Engineering – Computer Science',
+    degree: 'Bachelor of Engineering — Computer Science and Engineering',
     institution: 'BMS Institute of Technology and Management',
-    duration: '2023 – 2027',
-    score: 'CGPA: 9',
+    location: 'Bengaluru, Karnataka',
+    duration: '2023 — 2027',
+    score: '9.03 CGPA',
+    highlight: 'Active Student Leader (Founder & VP, ASTRA Club) & Autonomous Systems Research Contributor',
     icon: GraduationCap
   },
   {
-    degree: '12th Grade',
+    degree: 'Class XII (Computer Science)',
     institution: 'Sri Maruthi PU College',
-    duration: '2021 – 2023',
+    location: 'Karnataka',
+    duration: '2022 — 2023',
     score: 'Percentage: 94.6%',
+    highlight: 'Academic distinction in PCMC (Physics, Chemistry, Mathematics & Computer Science)',
     icon: Award
   },
   {
-    degree: '10th Grade',
+    degree: 'Class X (SSLC)',
     institution: 'Anugraha High School',
-    duration: '2021',
+    location: 'Karnataka',
+    duration: '2020 — 2021',
     score: 'Percentage: 79.3%',
+    highlight: 'Foundational secondary school education',
     icon: Award
   }
 ]
 
 const Education = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-
   return (
-    <section className="section education" ref={ref}>
+    <section className="section education" id="education">
       <div className="container">
-        <motion.h2
-          className="section-title"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          Education
-        </motion.h2>
+        <div className="section-header">
+          <p className="section-label">ACADEMIC FOUNDATION</p>
+          <h2 className="section-title">Education</h2>
+          <p className="section-description">
+            Formal Computer Science &amp; Engineering degree education and academic record.
+          </p>
+        </div>
 
-        <div className="timeline">
-          {educationData.map((item, index) => {
+        <div className="education-timeline">
+          {educationHistory.map((item, index) => {
             const Icon = item.icon
             return (
               <motion.div
                 key={index}
-                className="timeline-item"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: index * 0.2, duration: 0.6 }}
+                className="timeline-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="timeline-icon">
-                  <Icon size={24} />
+                <div className="timeline-badge">
+                  <Icon size={22} />
                 </div>
-                <motion.div
-                  className="timeline-content"
-                  whileHover={{ 
-                    scale: 1.02,
-                    boxShadow: '0 0 30px rgba(0, 212, 255, 0.3)'
-                  }}
-                >
-                  <h3 className="timeline-degree">{item.degree}</h3>
-                  <p className="timeline-institution">{item.institution}</p>
-                  <div className="timeline-details">
-                    <span className="timeline-duration">{item.duration}</span>
-                    <span className="timeline-score">{item.score}</span>
+
+                <div className="timeline-content">
+                  <div className="timeline-header-row">
+                    <div>
+                      <h3 className="degree-title">{item.degree}</h3>
+                      <h4 className="institution-name">{item.institution} <span className="loc-tag">• {item.location}</span></h4>
+                    </div>
+
+                    <div className="score-badge">
+                      <span>{item.score}</span>
+                    </div>
                   </div>
-                </motion.div>
+
+                  <p className="timeline-highlight">{item.highlight}</p>
+
+                  <div className="timeline-meta">
+                    <span className="duration-tag"><Calendar size={14} /> {item.duration}</span>
+                  </div>
+                </div>
               </motion.div>
             )
           })}
